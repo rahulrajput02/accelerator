@@ -52,7 +52,7 @@ export class blockchainPlatformComponent {
   }
 
   showY7() {
-    alert('You might need a PERMISSIONED BLOCKCHAIN!');
+    alert('You might need a PUBLIC BLOCKCHAIN!');
     window.location.href = environment.gotoHome;
   }
 
