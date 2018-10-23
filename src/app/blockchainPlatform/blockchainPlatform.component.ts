@@ -25,7 +25,6 @@ export class blockchainPlatformComponent {
 
   showY2() {
     document.getElementById('div6').style.display = 'block';
-    document.getElementById('div4').style.display = 'none';
   }
 
   showY3() {
