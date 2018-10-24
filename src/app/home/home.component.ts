@@ -14,7 +14,6 @@ export class HomeComponent {
   q3;
   q4;
   q5;
-  submit;
 
   display = 'none';
 
@@ -63,7 +62,7 @@ export class HomeComponent {
   }
 
   nextStep() {
-    const usecase = document.getElementById('usecase').value;
+    const usecase = (<HTMLInputElement>document.getElementById('usecase')).value;
 
     if (usecase) {
       this.q1 = true;
@@ -71,7 +70,7 @@ export class HomeComponent {
   }
 
   nextStep2() {
-    const platform = document.getElementById('platform').value;
+    const platform = (<HTMLInputElement>document.getElementById('platform')).value;
 
     if (platform == 'hyp') {
       this.q2 = true;
@@ -81,7 +80,7 @@ export class HomeComponent {
   }
 
   nextStep3() {
-    const language = document.getElementById('language').value;
+    const language = (<HTMLInputElement>document.getElementById('language')).value;
     if (language) {
       this.q4 = true;
     }
@@ -93,6 +92,6 @@ export class HomeComponent {
 
   submit() {
     alert("Thankyou!");
-    window.location.href =  environment.gotoHome;
+    window.location.href = environment.gotoHome;
   }
 }
