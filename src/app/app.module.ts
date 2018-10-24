@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { needBlockchainComponent } from './needBlockchain/needBlockchain.component';
 import { HomeComponent } from './home/home.component';
 import { dashboardComponent } from './dashboard/dashboard.component';
 import { blockchainPlatformComponent } from './blockchainPlatform/blockchainPlatform.component';
@@ -19,7 +18,6 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    needBlockchainComponent,
     blockchainPlatformComponent,
     HomeComponent,
     dashboardComponent,

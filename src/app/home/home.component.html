@@ -2,8 +2,8 @@
   <img class="logo" alt="Evoke Logo" src="assets/logo.png">
 </a>
 <div class="needBlockchain">
-  <a href="/needblockchain">
-    <h5>
+  <a>
+    <h5 (click)="openModal()">
       Do you need blockchain?
     </h5>
   </a>
@@ -15,28 +15,246 @@
       Blockchain Framework
     </h1>
   </div>
+</div>
 
-  <img class="logo2" src="https://www.onefederalsolution.com/wp-content/uploads/2018/02/blockchain.svg">
+<!-- <img class="logo2" src="https://www.onefederalsolution.com/wp-content/uploads/2018/02/blockchain.svg"> -->
+<div class="container2">
+  <div class="card text-center">
+    <div class="card-header">
+      Choose a Usecase
+    </div>
+    <div class="card-body">
+      <select id="usecase">
+        <option value="null">--Choose--</option>
+        <option value="rc">Record Keeping</option>
+        <option value="coc">Chain of custody</option>
+        <option value="scm">SCM</option>
+        <option value="reward">Rewards</option>
+      </select>
+    </div>
+    <div class="buttonSubmit">
+      <button (click)="nextStep()" class="btn btn-secondry btn-sm">Next</button>
+    </div>
+    <div class="card-footer text-muted">
+      <!-- <div class="colorHeading">
+        <a href="blockchainplatform">
+          Help me choose!
+        </a>
+      </div> -->
+    </div>
+  </div>
+</div>
 
+<div class="container3" *ngIf="q1">
   <div class="card text-center">
     <div class="card-header">
       Choose Blockchain Platform
     </div>
     <div class="card-body">
-      <select>
+      <select id="platform">
         <option value="null">--Choose--</option>
         <option value="hyp">Hyperledger</option>
         <option value="eth">Ethereum</option>
-        <option value="r3">R3corda</option>
       </select>
     </div>
     <div class="buttonSubmit">
-      <button class="btn btn-secondry btn-sm">Submit</button>
+      <button (click)="nextStep2()" class="btn btn-secondry btn-sm">Next</button>
     </div>
     <div class="card-footer text-muted">
-      <a href="/blockchainplatform">
-        Help me choose!
-      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container4" *ngIf="q2">
+  <div class="card text-center">
+    <div class="card-header">
+      Choose Smart Contract Language
+    </div>
+    <div class="card-body">
+      <select id="language">
+        <option value="null">--Choose--</option>
+        <option value="comp">Composer</option>
+        <option value="chain">Chaincode</option>
+      </select>
+    </div>
+    <div class="buttonSubmit">
+      <button (click)="nextStep3()" class="btn btn-secondry btn-sm">Next</button>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+</div>
+
+<div class="container4" *ngIf="q3">
+  <div class="card text-center">
+    <div class="card-header">
+      Choose Blockchain Language
+    </div>
+    <div class="card-body">
+      <select id="language">
+        <option value="hyp">Solidity</option>
+      </select>
+    </div>
+    <div class="buttonSubmit">
+      <button (click)="nextStep3()" class="btn btn-secondry btn-sm">Next</button>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+</div>
+
+<div class="container5" *ngIf="q4">
+  <div class="card text-center">
+    <div class="card-header">
+      Select features
+    </div>
+    <div class="card-body">
+      <div class="form-check-inline">
+        <label class="form-check-label" for="check1">
+          <input type="checkbox" class="form-check-input" id="check1" name="vehicle1" value="something">Web UI
+        </label>
+      </div>
+      <div class="form-check-inline">
+        <label class="form-check-label" for="check2">
+          <input type="checkbox" class="form-check-input" id="check2" name="vehicle2" value="something">Backend
+        </label>
+      </div>
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input">Database
+        </label>
+      </div>
+    </div>
+    <div class="buttonSubmit">
+      <button (click)="nextStep4()" class="btn btn-secondry btn-sm">Next</button>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+</div>
+
+<div class="container6" *ngIf="q5">
+  <div class="card text-center">
+    <div class="card-header">
+      Choose Option
+    </div>
+    <div class="card-body">
+      <select id="language">
+        <option value="null">--Choose--</option>
+        <option value="hyp">Download</option>
+        <option value="hyp">Deploy to Cloud</option>
+      </select>
+    </div>
+    <div class="buttonSubmit">
+      <button (click)="submit()" class="btn btn-secondry btn-sm">Submit</button>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+</div>
+
+
+
+<!-- MODAL FOR DO YOU NEED BLOCKCHAIN -->
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="heading2">
+          <h3>
+            Do you need Blockchain?
+          </h3>
+        </div>
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div id="div1" class="form-group">
+            <label>
+              <b>Does my usecase involve a database?</b>
+            </label>
+            <div class="form-check" style="padding-left: 5%">
+              <input class="form-check-input" type="radio" name="debtRadio" id="q1y" value="yes" (click)="showY1('div2')">
+              <label class="form-check-label" for="yes"> Yes </label>
+            </div>
+            <div class="form-check" style="padding-left: 5%">
+              <input class="form-check-input" type="radio" name="debtRadio" id="q1n" value="no" (click)="showN1()">
+              <label class="form-check-label" for="no"> No </label>
+            </div>
+          </div>
+
+          <div id="div2" class="hide">
+            <div class="form-group">
+              <label>
+                <b>Will there be numerous users updating my database?</b>
+              </label>
+              <div class="form-check" style="padding-left: 5%">
+                <input class="form-check-input" type="radio" name="debtRadio" id="q3y" value="yes" (click)="showY1('div3')">
+                <label class="form-check-label" for="yes"> Yes </label>
+              </div>
+              <div class="form-check" style="padding-left: 5%">
+                <input class="form-check-input" type="radio" name="debtRadio" id="q3n" value="no" (click)="showN2()">
+                <label class="form-check-label" for="no"> No </label>
+              </div>
+            </div>
+          </div>
+
+          <div id="div3" class="hide">
+            <div class="form-group">
+              <label>
+                <b>Do these users need to trust each other?</b>
+              </label>
+              <div class="form-check" style="padding-left: 5%">
+                <input class="form-check-input" type="radio" name="debtRadio" id="q4y" value="yes" (click)="showY1('div4')">
+                <label class="form-check-label" for="yes"> Yes </label>
+              </div>
+              <div class="form-check" style="padding-left: 5%">
+                <input class="form-check-input" type="radio" name="debtRadio" id="q4n" value="no" (click)="showN3()">
+                <label class="form-check-label" for="no"> No </label>
+              </div>
+            </div>
+          </div>
+
+          <div id="div4" class="hide">
+            <div class="form-group">
+              <label>
+                <b>Are there problems caused by the use of central/third party entity?</b>
+              </label>
+              <div class="form-check" style="padding-left: 5%">
+                <input class="form-check-input" type="radio" name="debtRadio" id="q4y" value="yes" (click)="showY1('div5')">
+                <label class="form-check-label" for="yes"> Yes </label>
+              </div>
+              <div class="form-check" style="padding-left: 5%">
+                <input class="form-check-input" type="radio" name="debtRadio" id="q4n" value="no" (click)="showN4()">
+                <label class="form-check-label" for="no"> No </label>
+              </div>
+            </div>
+          </div>
+
+          <div id="div5" class="hide">
+            <div class="form-group">
+              <label>
+                <b>Do transactions depend or interact with each other?</b>
+              </label>
+              <div class="form-check" style="padding-left: 5%">
+                <input class="form-check-input" type="radio" name="debtRadio" id="q2y" value="yes" (click)="showY5()">
+                <label class="form-check-label" for="yes"> Yes </label>
+              </div>
+              <div class="form-check" style="padding-left: 5%">
+                <input class="form-check-input" type="radio" name="debtRadio" id="q2n" value="no" (click)="showN5()">
+                <label class="form-check-label" for="no"> No </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
+      </div>
     </div>
   </div>
 </div>
